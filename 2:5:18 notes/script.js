@@ -31,8 +31,6 @@ var start = function()
   }
   $("#numContainer").html(markup1);
   
-
-
   goToSlide(1, 0);
 }
 
