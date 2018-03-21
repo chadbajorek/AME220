@@ -1,6 +1,7 @@
 #ssContainer
 {
     height: calc(100% - 100px);
+	overflow: hidden;
     position: absolute;
     width: 100%;
     top: 0px;
@@ -36,7 +37,6 @@
     right: 20px;
 }
 
-.active
-{
+.active{
   border: 5px solid gold;
 }

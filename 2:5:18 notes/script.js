@@ -31,6 +31,8 @@ var start = function()
   }
   $("#numContainer").html(markup1);
   
+
+
   goToSlide(1, 0);
 }
 
@@ -38,14 +40,30 @@ var start = function()
 var goToSlide = function(n, d)
 {
   d = d || 0;
-  $("#ssContainer .slide").stop().fadeOut(d);
-  $("#ssContainer .slide:nth-of-type(" + n + ")").stop().fadeIn(d);
+  $(".slide").stop().removeClass("currentSlide").removeClass("slideLeft").removeClass("slideRight");
 
-  $("#numContainer button").removeClass("active");
-  $("#numContainer button:nth-of-type(" + n + ")").addClass("active");
+  $(".slide:nth-of-type(" + n + ")").addClass("currentSlide");
+  $(".currentSlide").animate({left: "0%"}, 500); 
+  var l = 0
+  while (l < n) {
+    $(".slide:nth-of-type(" + l + ")").addClass("slideLeft");
+    l++;
+  }
+  $(".slideLeft").animate({left: "-100%"}, 500);
+  var r = 0
+  r = n + 1
+  while (r < (allImages.length + 1)) {
+    $(".slide:nth-of-type(" + r + ")").addClass("slideRight");
+    r++;
+  }
+  $(".slideRight").animate({left: "100%"}, 500); 
 
-  currentSlide = n;
-}
+    $("#numContainer button").removeClass("active");
+    $("#numContainer button:nth-of-type(" + n + ")").addClass("active");
+
+    currentSlide = n;
+  }
+ 
 
 
 var goNext = function()
@@ -63,5 +81,6 @@ var goPrev = function()
   if (n < 1){
     n = allImages.length;
   } 
+  
   goToSlide(n, 1000);
 }
